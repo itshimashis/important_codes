@@ -1,0 +1,67 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define forn(i,n) for(int i=0;i<n;i++) 
+#define  mp make_pair
+#define ll long long int 
+#define um unordered_map 
+#define m map
+#define pb push_back
+ll gcd(ll a, ll b){if (b == 0)return a;return gcd(b, a % b);}
+ll lcm(ll a, ll b){return (a/gcd(a,b)*b);}
+void printvec(vector<ll>&v){
+    forn(i,v.size()){
+        cout<<v[i]<<" ";
+    }
+}
+vector<ll> p(vector<ll>&v){
+    forn(i,v.size()-1){
+        v[i+1]+=v[i];
+    }
+    return v;
+}
+vector<ll> q(vector<ll>&v,vector<ll>&ans , ll n){
+    forn(i,v.size()){
+        ans[i]=n-v[i];
+    }
+    return ans;
+}
+
+
+int main(){
+    ios_base::sync_with_stdio(false);
+    cin.tie(0);cout.tie(0);
+int t ;cin>>t;
+while(t--){
+    ll n,k;cin>>n>>k;
+    vector<ll>v;
+    forn(i,k){
+        ll x;cin>>x;
+        v.pb(x);
+    }
+    sort(v.begin(),v.end(),greater<int>());
+vector<ll>ans;
+forn(i,k){
+    ans.pb(n-v[i]);
+}
+forn(i,k-1){
+    ans[i+1]+=ans[i];
+}  
+    ll low=0,high=k-1;
+while(high-low>1){
+        ll mid=low+(high-low)/2;
+        if(ans[mid]<=v[mid]) low=mid;
+        else high=mid;
+        
+    }
+    //cout<<high+1<<" "<<low+1<<endl;
+    if(ans[low]<v[high]) cout<<high+1<<endl;
+    else cout<<low+1<<endl;
+
+
+
+
+
+
+
+}
+return 0;}
