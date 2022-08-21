@@ -1,0 +1,58 @@
+//JAI SHREE RAM 
+//JAI BHAVANI JAI SHIVAJI
+#include<bits/stdc++.h>
+using namespace std;
+#define forn(i,n) for(int i=0;i<n;i++) 
+#define  mp make_pair
+#define ll long long int 
+#define um unordered_map 
+#define m map
+#define pb push_back
+ll gcd(ll a, ll b){if (b == 0)return a;return gcd(b, a % b);}
+ll lcm(ll a, ll b){return (a/gcd(a,b)*b);}
+void printvec(vector<int>&v){
+    forn(i,v.size()){
+        cout<<v[i]<<" ";
+    }
+}
+
+bool check(vector<ll>&v,ll h,ll k){
+    ll sum=0;
+    forn(i,v.size()-1){
+        if(v[i+1]-v[i]>k) sum+=k;//sum+=v[i+1]-v[i]+1;
+        else sum+=v[i+1]-v[i];
+
+
+    }sum+=k;
+    if(sum>=h) return true;
+    else return false ;
+}
+
+
+int main(){
+    ios_base::sync_with_stdio(false);
+    cin.tie(0);cout.tie(0);
+int t ;cin>>t;
+while(t--){
+    ll n,h;cin>>n>>h;
+    vector<ll>v;
+    forn(i,n){
+        ll x;cin>>x;
+        v.pb(x);
+    }
+   ll low=0,high=1e18;
+   while(high-low>1){
+       ll mid=low+(high-low)/2;
+       if(check(v,h,mid)) high=mid;
+       else low=mid+1;
+    
+   }
+
+if(check(v,h,low)) cout<<low<<endl;
+else if(check(v,h,high)) cout<<high<<endl;
+else cout<<high+1<<endl;
+//cout<< check(v,h,low)<<" "<<check(v,h,high)<<endl;
+//cout<<check(v,h,471)<<endl;
+
+}
+return 0;}
