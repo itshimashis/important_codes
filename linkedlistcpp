@@ -1,0 +1,73 @@
+#include<bits/stdc++.h>
+using namespace std;
+// declaration of class node
+class node{
+public:
+int data;
+node* next;
+//usually used only for declaring head pointer
+node(int data){
+    this->data=data;
+    this->next=NULL;
+}
+};
+//declaring a function for adding a new node at the head
+void insertathead(node* &headpointer,int x){
+    node* temp= new node(x);
+    temp->next=headpointer;
+    
+    headpointer=temp;
+}
+void insertattail(node* &tailptr,int x){
+    node* temp=new node(x);
+    tailptr->next=temp;
+
+    
+    temp=tailptr;
+
+
+}
+//inserting at an arbitrary position(relatively a bit tough)
+void insertatposition(node* &head,int position,int d){
+    node* temp=head;
+   int  count=1;
+    while(count<position-1){
+        temp=temp->next;
+        count++;
+    }
+    node* nodetoinsert=new node(d);
+    nodetoinsert->next=temp->next;
+    temp->next=nodetoinsert;
+
+}
+//deleting an element
+ 
+
+// writing function for printing a linked list
+void printlinkedlist(node* &headptr){
+    node* temp=headptr;
+    while(temp!=NULL){
+        cout<<temp->data<<" "<<temp->next<<endl;
+        temp=temp->next;
+
+    }
+}
+int main(){
+    //creating a linked list
+    //create a head ptr first
+    node* head= new node(10);
+   
+ 
+    insertattail(head,9);//adding a new node before the previously declared head node
+  
+
+    //new node has been created
+    insertattail(head,7);
+    insertattail(head,6); 
+   
+    insertattail(head,5);
+   
+printlinkedlist(head);
+
+    return 0;
+}
